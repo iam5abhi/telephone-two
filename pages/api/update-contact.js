@@ -5,7 +5,7 @@ const xata = getXataClient();
 
 const handler = async (req, res) => {
 
-  const { id, specialization, category, Name, alternatePhoneNumber, phoneNumber, email, Link } = req.body;
+  const { id, specialization, category, Name, alternatePhoneNumber, phoneNumber, email, Link, location } = req.body;
   const results = await xata.db.contacts.createOrUpdate(id,{
     specialization,
     category,
@@ -14,6 +14,7 @@ const handler = async (req, res) => {
     phoneNumber,
     email,
     Link,
+    location,
   });
   res.send(results);
 };

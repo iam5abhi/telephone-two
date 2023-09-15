@@ -6,7 +6,7 @@ import PrivateRoute from "../../../PrivateRoute/PrivateRoute";
 const AddContact = () => {
   const router = useRouter();
   const [categoryData, setCategoryData] = useState([]);
-
+  const [location,setLocation]=useState([])
   const [formData, setFormData] = useState({
     specialization: "",
     category: "",
@@ -15,6 +15,7 @@ const AddContact = () => {
     phoneNumber: "",
     email: "",
     Link: "",
+    location:"",
   });
 
   const onChangeHandler = (event) => {
@@ -46,7 +47,19 @@ const AddContact = () => {
       .then((res) => setCategoryData(res));
   };
 
+  const getLocationData = () => {
+    fetch("/api/location/get-location", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setLocation(res));
+  };
+
   useEffect(() => {
+    getLocationData();
     getCategoryData();
   }, []);
 
@@ -65,6 +78,32 @@ const AddContact = () => {
                 </h1>
                 <input type="hidden" name="remember" defaultValue="true" />
                 <div className="mt-8 space-y-4 ">
+                  <div className="mb-4">
+                    <label
+                      htmlFor="location"
+                      className="block mb-2 text-sm font-medium text-gray-900"
+                    >
+                      Select an option
+                    </label>
+                    <select
+                      id="location"
+                      name="location"
+                      onChange={onChangeHandler}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                      required
+                    >
+                      <option value="">Choose</option>
+                      {location.length === 0 ? (
+                        <option disabled>Loading...</option>
+                      ) : (
+                        location.map((data) => (
+                          <option key={data.id} value={data.id}>
+                            {data.location}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
                   <div className="mb-4">
                     <label
                       htmlFor="category"

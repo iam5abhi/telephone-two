@@ -3,21 +3,22 @@ import React, { useEffect, useState } from 'react';
 
 const viewPropert = () => {
     const router = useRouter()
-    const requirement = router.query
+    const {name} = router.query
     const [contact, setContact] = useState()
     const [checkValue,setCheckValue]=useState({commercial:false,residential:false})
     const [whatsappNumber,setWhatsappNumber]=useState()
-    
-
+  
     const getCategotyData = () => {
-        fetch("/api/property/get-property", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        body: JSON.stringify({requirement:requirement.name }),
-        }).then((res) => { return res.json() }
-        ).then((res) => setContact(res))
+        if(name){
+            fetch("/api/property/get-property", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            body: JSON.stringify({requirement:name[0],location:name[1] }),
+            }).then((res) => { return res.json() }
+            ).then((res) => setContact(res))
+        }
     }
 
     const getFilterData = (filter, collmnName) => {
@@ -31,7 +32,7 @@ const viewPropert = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({requirement:requirement.name,[collmnName]: filter }),
+            body: JSON.stringify({requirement:name[0],[collmnName]: filter }),
         })
             .then((res) => {
                 if (!res.ok) { throw new Error("Network response was not ok") }
@@ -54,7 +55,7 @@ const viewPropert = () => {
     useEffect(() => {
         getCategotyData();
         getWhatsappData();
-    }, [])
+    }, [name])
     return (
         <>
 

@@ -10,12 +10,13 @@ const Contacts = () => {
 
 
     const getContactData = () => {
+        if(id){
         fetch("/api/public/get-contacts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: id }),
+            body: JSON.stringify({ id: id[0], location: id[1] }),
         })
             .then((res) => {
                 // Check if the response status is okay (2xx status code)
@@ -31,16 +32,18 @@ const Contacts = () => {
                 // Handle any errors that occurred during the fetch or JSON parsing
                 console.error("Error fetching or parsing data:", error);
                 // You can set the category state to a default value or handle the error in another way
-            });
+        });
+        }
     };
 
     const getCategotyData = () => {
+        if(id){
         fetch("/api/get-singlecategory", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: id }),
+            body: JSON.stringify({ id: id[0] }),
         })
             .then((res) => {
                 if (!res.ok) { throw new Error("Network response was not ok") }
@@ -48,6 +51,7 @@ const Contacts = () => {
             })
             .then((data) => { setCategory(data.category) })
             .catch((error) => { console.error("Error fetching or parsing data:", error) });
+        }
     };
 
     useEffect(() => {
