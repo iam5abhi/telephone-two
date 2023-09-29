@@ -136,7 +136,7 @@ const viewPropert = () => {
                                                                 </a>
                                                             </div>
                                                             <div className="md:pl-16 pl-6 md:pt-0 pt-2">
-                                                                <a href={`https://web.whatsapp.com/send?phone=91${whatsappNumber}&text=ask_price%20:${data.ask_price}%3A%20%2Cname:${data.title}`}>
+                                                                <a target='_blank' href={`https://web.whatsapp.com/send?phone=91${whatsappNumber}&text=ask_price%20:${data.ask_price}%3A%20%2Cname:${data.title}`}>
                                                                     <img src="/Images/whatsapp.png" className="w-8 md:w-14" />
                                                                 </a>
                                                             </div>
