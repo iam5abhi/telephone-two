@@ -7,7 +7,7 @@ const viewPropert = () => {
     const [contact, setContact] = useState()
     const [checkValue,setCheckValue]=useState({commercial:false,residential:false})
     const [whatsappNumber,setWhatsappNumber]=useState()
-  
+    
     const getCategotyData = () => {
         if(name){
             fetch("/api/property/get-property", {
@@ -32,7 +32,7 @@ const viewPropert = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({requirement:name[0],[collmnName]: filter }),
+            body: JSON.stringify({requirement:name[0],[collmnName]: filter,location:name[1] }),
         })
             .then((res) => {
                 if (!res.ok) { throw new Error("Network response was not ok") }
