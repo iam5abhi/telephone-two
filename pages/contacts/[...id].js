@@ -75,21 +75,21 @@ const Contacts = () => {
                         <div>
                             {/*     BOX     */}
                             < Carousel />
+                            <div className="grid2 mt-4">
+                                <div className="max-w-sm mx-auto rounded-full bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md">
+                                    <div className="p-5">
+                                        <h5 className="text-center  text-white text-xl md:text-3xl font-semibold tracking-tight uppercase">{category}</h5>
+                                    </div>
+                                </div>
+                            </div>
                             {contactData.length == 0 ? <div className='text-center text-lg '>No Record  Found.....</div>
                                 : contactData.map((data,index) => {
                                     return <>
-                                        <div className="grid2 mt-4">
-                                            <div className="max-w-sm mx-auto rounded-full bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l shadow-md">
-                                                <div className="p-5">
-                                                    <h5 className="text-center  text-white text-xl md:text-3xl font-semibold tracking-tight uppercase">{category}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div key={index+1} className="max-w-screen mx-auto">
-                                            <div className="container mx-auto py-10">
+                                            <div className="container mx-auto py-2">
                                                 <div className="p-4">
                                                     <div className="rounded mb-4">
-                                                        <div className="grid gap-6 mb-6 grid-cols-1 md:grid-cols-1">
+                                                        <div className="grid gap-6 grid-cols-1 md:grid-cols-1">
                                                             <div className="grid1">
                                                                 <div className="relative w-full md:w-[60%] bg-gradient-to-r from-[#4216AA] to-[#F8AF0B] hover:bg-gradient-to-l  md:mx-auto border rounded-lg shadow-md">
                                                                     <div className="md:p-5 p-2">
