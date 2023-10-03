@@ -8,7 +8,6 @@ const Contacts = () => {
     const [contactData, setContactData] = useState([]);
     const [category, setCategory] = useState();
 
-
     const getContactData = () => {
         if(id){
         fetch("/api/public/get-contacts", {
@@ -84,7 +83,8 @@ const Contacts = () => {
                             </div>
                             {contactData.length == 0 ? <div className='text-center text-lg '>No Record  Found.....</div>
                                 : contactData.map((data,index) => {
-                                    return <>
+                                    if(data.location===id[1]){
+                                        return <>
                                         <div key={index+1} className="max-w-screen mx-auto">
                                             <div className="container mx-auto py-2">
                                                 <div className="p-4">
@@ -122,6 +122,7 @@ const Contacts = () => {
                                         </div>
 
                                     </>
+                                    }
                                 })}
                         </div>
                     </div>
