@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@xata.io/client": "^0.24.3",
     "autoprefixer": "10.4.14",
+    "axios": "^1.5.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
     "firebase": "^10.0.0",

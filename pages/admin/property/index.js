@@ -2,10 +2,12 @@ import { useRouter } from 'next/router';
 import React,{useState,useEffect} from 'react'
 import PrivateRoute from '../../../PrivateRoute/PrivateRoute';
 import Link from 'next/link';
+import Broadcast from '../../../components/Admin/Broadcast/Broadcast';
 
 const Index = () => {
     const router = useRouter();
     const [contact,setContact]=useState()
+    const [broadcastOpen,setBroadcastOpen]=useState(false)
     
     const deleteContacts = (id) => {
         fetch("/api/property/delete-property", {
@@ -52,7 +54,10 @@ const Index = () => {
             <div className="py-8">
                 <div className='px-2 flex justify-between'>
                     <h2 className="text-2xl font-semibold leading-tight">Property</h2>
-                    <Link href="/admin/property/add" ><h2 className="text-lg font-semibold leading-tight bg-blue-900 text-white rounded-full shadow px-5 py-1">Add Property</h2></Link>
+                    <div className='gap-2 flex justify-between'>
+                        <Link href="/admin/property/add" ><h2 className="text-lg font-semibold leading-tight bg-blue-900 text-white rounded-full shadow px-5 py-1">Add Property</h2></Link>
+                        <h2 onClick={()=>setBroadcastOpen(true)} className="cursor-pointer text-lg font-semibold leading-tight bg-blue-900 text-white rounded-full shadow px-5 py-1">Sms Broadcast</h2>
+                    </div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
@@ -132,7 +137,7 @@ const Index = () => {
                 </div>
             </div>
         </div>
-
+        {!broadcastOpen?null:<Broadcast queries={contact} setOpen={setBroadcastOpen} open={broadcastOpen} getQueriesData={getCategotyData} />}                      
         </>
     )
 }
